@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\CartItem;
 use Illuminate\Support\Facades\Session;
 
+
 class CartController extends Controller
 {
     public function add(Request $request)
@@ -64,5 +65,12 @@ class CartController extends Controller
             'tax' => number_format($tax, 2),
             'grand_total' => number_format($grandTotal, 2),
         ]);
+    }
+    public function index()
+    {
+        $cartItems = CartItem::where('session_id', Session::getId())->with('product')->get();
+        #$total = $this->getTotal();
+
+        return view('cart', compact('cartItems'));
     }
 }

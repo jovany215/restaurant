@@ -10,16 +10,16 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $categories = Category::all();
-        $products = Product::with('categorie')->where('is_active', true)->get();
+        $category = Category::all();
+        $products = Product::with('category')->where('is_active', true)->get();
 
-        return view('menu', compact('categorie', 'products'));
+        return view('menu', compact('category', 'products'));
     }
     public function byCategory(Category $category)
     {
-        $categories = Category::all();
+        $category = Category::all();
         $products = $category->products()->where('is_active', true)->get();
-        return view('menu', compact('categories', 'products'));
+        return view('menu', compact('category', 'products'));
     }
     //
 }
