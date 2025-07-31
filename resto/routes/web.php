@@ -5,6 +5,12 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 
 Route::get('/', [ProductController::class, 'index'])->name('menu');
+Route::get('/restaurant', function () {
+    return view('menu');
+})->name('restaurant.menu');
+Route::get('/demo', function () {
+    return view('demo');
+})->name('restaurant.demo');
 Route::get('/category/{category}', [ProductController::class, 'byCategory']);
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
